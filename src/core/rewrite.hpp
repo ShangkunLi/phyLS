@@ -38,6 +38,5 @@ void aig_rewrite(Ntk& ntk) {
   ps.min_cand_cut_size_override = 3;
   cut_rewriting_with_compatibility_graph( ntk, resyn, ps );
   ntk = cleanup_dangling( ntk );
-  return before - ntk.num_gates();
 }
 }
