@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "vector": "cpp",
+        "random": "cpp",
+        "algorithm": "cpp",
+        "iostream": "cpp",
+        "type_traits": "cpp",
+        "cstdint": "cpp",
+        "stack": "cpp",
+        "optional": "cpp",
+        "any": "cpp"
+    }
+}

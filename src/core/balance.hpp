@@ -16,6 +16,7 @@ namespace phyLS
 template <class Ntk>
 void aig_balancing(Ntk& ntk) {
     // please learn the algorithm of "mockturtle/algorithms/aig_balancing.hpp"
+    aig_balance(ntk);
 }
 
 }

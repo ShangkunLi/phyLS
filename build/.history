@@ -1,0 +1,25 @@
+read_aiger ../benchmarks/adder.aig
+ps -a
+balance
+ps -a
+read_aiger ../benchmarks/max.aig
+ps -a
+balance
+rewrite
+quit
+ls
+read_aiger ../benchmarks/max.aig
+ps -a
+balance
+rewriting
+rewrite
+ls
+quit
+read_aiger ../benchmarks/adder.aig
+ps -a
+balance
+rewrite
+rewrite
+read_genlib ../src/mcnc.genlib
+techmap
+quit
