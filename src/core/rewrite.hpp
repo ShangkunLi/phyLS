@@ -20,26 +20,24 @@ template <class Ntk>
 void aig_rewrite(Ntk& ntk) {
   // please learn the algorithm of "mockturtle/algorithms/cut_rewriting.hpp"
 
-  /* Code Block 1
-   * If you want to use rewriting with compatibility graph
-   * Please uncomment Code Block 1 and comment Code Block 2
-  */
+  // Cut rewriting with AIG NPN4 restnthesis
+  // xag_npn_resynthesis<aig_network> resyn;
   // cut_rewriting_params ps;
   // ps.cut_enumeration_ps.cut_size = 4;
-  // ps.progress = true;
-  // xag_npn_resynthesis<aig_network> resyn;
-  // cut_rewriting_with_compatibility_graph(ntk, resyn, ps);
+  // ps.min_cand_cut_size = 2;
+  // ps.min_cand_cut_size_override = 3;
+  // cut_rewriting_with_compatibility_graph( ntk, resyn, ps );
+  // ntk = cleanup_dangling( ntk );
 
-
-  /* Code Block 2
-   * If you want to use general rewriting algorithm
-   * Please uncomment Code Block 2 and comment Code Block 1
-  */
+  // Cut rewriting with AIG NPN4 resynthesis using a complete database
+  xag_npn_resynthesis<aig_network, aig_network, xag_npn_db_kind::aig_complete> resyn;
+  const auto before = ntk.num_gates();
   cut_rewriting_params ps;
   ps.cut_enumeration_ps.cut_size = 4;
-  ps.progress = true;
-  xag_npn_resynthesis<aig_network> resyn;
-  cut_rewriting(ntk, resyn, ps);
-  
+  ps.min_cand_cut_size = 2;
+  ps.min_cand_cut_size_override = 3;
+  cut_rewriting_with_compatibility_graph( ntk, resyn, ps );
+  ntk = cleanup_dangling( ntk );
+  return before - ntk.num_gates();
 }
 }
